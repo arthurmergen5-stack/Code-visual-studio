@@ -1,0 +1,114 @@
+# Lexique des éléments utilisés dans le code
+
+### 1. JavaScript (JS) : Mots-clés et structures
+
+* `const`
+Sens : Constante.
+Utilité : Déclare une variable dont la valeur ne pourra plus être réassignée par la suite. Utilisé pour les éléments fixes (comme les éléments du DOM récupérés par `getElementById` ou les configurations de base).
+
+
+* `let`
+Sens : Variable modifiable.
+Utilité : Déclare une variable dont la valeur est appelée à changer au cours de l'exécution du programme (ex: l'argent du joueur, le nombre de clics, l'état d'une partie).
+
+
+* `function`
+Sens : Fonction.
+Utilité : Permet de regrouper un bloc de code réutilisable pour effectuer une tâche précise (ex: calculer un gain, formater un nombre).
+
+
+* `return`
+Sens : Retourner (un résultat).
+Utilité : Termine l'exécution d'une fonction et renvoie une valeur spécifique à l'endroit où elle a été appelée.
+
+
+* `if / else`
+Sens : Si / Sinon.
+Utilité : Permet d'exécuter certaines portions de code conditionnellement (ex: vérifier si le joueur a assez d'argent pour acheter une amélioration).
+
+
+* `forEach`
+Sens : Pour chaque.
+Utilité : Une méthode de boucle qui permet de parcourir chaque élément d'un tableau (par exemple, pour vérifier tous les succès un par un).
+
+
+* `filter`
+Sens : Filtrer.
+Utilité : Crée un nouveau tableau contenant uniquement les éléments qui respectent une condition précise (ex: compter combien de succès ont le statut `debloque: true`).
+
+
+* `addEventListener`
+Sens : Écouteur d'événements.
+Utilité : Permet d'attendre qu'une action de l'utilisateur se produise sur un élément (comme un clic sur un bouton ou une touche du clavier) pour déclencher une fonction.
+
+
+* `setInterval` / `setTimeout**`
+Sens : Intervalle de temps / Chronomètre différé.
+Utilité : `setInterval` répète une action à intervalles réguliers (ex: le revenu passif par seconde ou l'horloge). `setTimeout` exécute une action unique après un délai précis (ex: la fin de l'animation de la pièce au casino).
+
+
+* `try / catch`
+Sens : Essayer / Attraper (les erreurs).
+Utilité : Permet de sécuriser du code potentiellement bloquant, comme l'accès au stockage local du navigateur (`localStorage`), en évitant que le script ne plante en cas de blocage.
+
+
+
+---
+
+### 2. HTML : Balises et structure
+
+* `<!DOCTYPE html>`
+Utilité : Indique au navigateur qu'il s'agit d'un document HTML5 moderne.
+
+
+* `<main>`
+Utilité : Conteneur principal qui regroupe le contenu central et significatif de la page.
+
+
+* `<header>`
+Utilité : En-tête de la page, utilisé ici pour le titre, la description et l'affichage global des couronnes.
+
+
+* `<nav>`
+Utilité : Zone de navigation (contient ici les boutons permettant de changer d'onglet).
+
+
+* `<section>`
+Utilité : Divise la page en blocs thématiques logiques (le clicker, la boutique, le casino, le classement, etc.).
+
+
+* `<button>`
+Utilité : Élément interactif cliquable pour lancer des actions (cliquer, acheter, lancer un mini-jeu).
+
+
+* `<input>`
+Utilité : Champ de saisie permettant à l'utilisateur d'écrire du texte (pseudo) ou de rentrer un nombre (montant du pari au casino).
+
+
+
+---
+
+### 3. CSS : Propriétés et sélecteurs
+
+* `:root`
+Utilité : Pseudo-classe définissant des variables globales (couleurs, rayons de bordure, polices) réutilisables partout dans la feuille de style.
+
+
+* `display: flex` / `display: grid**`
+Utilité : Modèles de mise en page puissants pour aligner, espacer et organiser facilement les éléments en lignes, colonnes ou grilles.
+
+
+* `clamp()`
+Utilité : Fonction mathématique CSS permettant d'ajuster dynamiquement une taille de police ou un espacement selon la taille de l'écran (responsive fluide).
+
+
+* `@keyframes`
+Utilité : Permet de créer des animations personnalisées image par image (comme la rotation de la pièce de monnaie ou l'apparition des couronnes).
+
+
+* `transition`
+Utilité : Adoucit les changements d'état visuels (ex: survol d'un bouton ou changement de couleur).
+
+
+* `@media (max-width: 480px)`
+Utilité : Une règle adaptative (Media Query) qui modifie l'affichage de la page pour qu'elle s'adapte parfaitement aux petits écrans de smartphones.

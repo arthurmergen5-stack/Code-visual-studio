@@ -1,0 +1,646 @@
+/* ===== Variables globales ===== 
+   Utilité : Centralise les couleurs, typographies et dimensions de base pour assurer l'harmonie visuelle. */
+:root {
+  --fond: #eef1f5;
+  --surface: #ffffff;
+  --encre: #14213d;
+  --encre-douce: #4a5670;
+  --trait: #d3d9e2;
+  --accent: #2f5bea;
+  --accent-fonce: #2347c4;
+  --succes-couleur: #10b981;
+  --casino-or: #d99a00;
+  --rayon: 10px;
+  --police: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ===== Base & Réinitialisation ===== 
+   Utilité : Uniformise le comportement des boîtes (box-sizing) et les marges par défaut des navigateurs. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(1.25rem, 5vw, 4rem) 1.25rem;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--police);
+  line-height: 1.6;
+}
+
+/* ===== Mise en page générale ===== 
+   Utilité : Fixe la largeur maximale du conteneur et gère l'espacement vertical entre les blocs. */
+.page {
+  position: relative;
+  width: 100%;
+  max-width: 38rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ===== Bouton Profil en haut à droite ===== 
+   Utilité : Positionne un accès rapide vers la page de profil dans le coin supérieur droit. */
+.btn-profil {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--surface);
+  color: var(--encre);
+  border: 1px solid var(--trait);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-profil:hover {
+  background: var(--fond);
+  border-color: var(--encre-douce);
+}
+
+.entete h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.entete p {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--encre-douce);
+}
+
+.zone-couronnes-globales {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.titre-couronnes {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--encre-douce);
+}
+
+/* ===== Système d'onglets ===== 
+   Utilité : Met en forme la barre de navigation et gère l'affichage sélectif des pages du site. */
+.onglets {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--surface);
+  padding: 0.4rem;
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+}
+
+.bouton-onglet {
+  flex: 1;
+  background: transparent;
+  color: var(--encre-douce);
+  border: none;
+  padding: 0.6rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.bouton-onglet:hover {
+  background: var(--fond);
+  color: var(--encre);
+}
+
+.bouton-onglet.actif {
+  background: var(--accent);
+  color: #fff;
+}
+
+.conteneur-page {
+  display: none;
+  gap: 1.5rem;
+}
+
+.conteneur-page.actif {
+  display: grid;
+}
+
+/* ===== Blocs (Conteneurs de sections) ===== 
+   Utilité : Crée l'effet de cartes blanches épurées pour chaque composant du site. */
+.bloc {
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  padding: 1.5rem;
+}
+
+.bloc h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.bloc-clics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ===== Bloc Bonus ===== 
+   Utilité : Met en valeur le pourcentage de bonus global avec un fond coloré distinctif. */
+.bloc-bonus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f4ff;
+  border-color: #c7d2fe;
+}
+
+.bonus-titre {
+  font-weight: 600;
+  color: var(--encre);
+}
+
+.bonus-valeur {
+  font-weight: 700;
+  color: var(--accent-fonce);
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Style de la page Profil ===== 
+   Utilité : Présente les statistiques détaillées du joueur sous forme de lignes propres. */
+.bloc-profil {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stat-ligne {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--trait);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-ligne:last-child {
+  border-bottom: none;
+}
+
+/* ===== Style du Casino & Animation de la pièce ===== 
+   Utilité : Met en forme l'interface de pari et gère l'animation 3D de rotation de la pièce. */
+.bloc-casino {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+
+.casino-desc {
+  margin: 0;
+  color: var(--encre-douce);
+  font-size: 0.95em;
+  text-align: left;
+}
+
+.formulaire-pari {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.formulaire-pari label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.formulaire-pari input {
+  font: inherit;
+  color: var(--encre);
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  width: 120px;
+  font-variant-numeric: tabular-nums;
+}
+
+.zone-piece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  margin: 0.5rem 0;
+}
+
+.piece {
+  width: 70px;
+  height: 70px;
+  background: var(--casino-or);
+  color: #fff;
+  border: 4px solid #b58100;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease;
+}
+
+.piece.animation-rotation {
+  animation: tournerPiece 0.6s ease-in-out;
+}
+
+@keyframes tournerPiece {
+  0%   { transform: rotateY(0deg) scale(1); }
+  50%  { transform: rotateY(720deg) scale(1.2); }
+  100% { transform: rotateY(1440deg) scale(1); }
+}
+
+.boutons-pari {
+  display: flex;
+  gap: 1rem;
+}
+
+.boutons-pari button {
+  flex: 1;
+  background: #0f172a;
+}
+
+.boutons-pari button:hover:not(:disabled) {
+  background: #1e293b;
+}
+
+.resultat-casino {
+  min-height: 1.4em;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+/* ===== Mini-jeu Aim Lab ===== 
+   Utilité : Définit le cadre visuel sombre et interactif où apparaissent les cibles de tir. */
+.bloc-aim {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.aim-infos {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--encre-douce);
+  font-weight: 600;
+}
+
+.aim-plateau {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: #0f172a;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cible {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: #ef4444;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: scale(0);
+  animation: popIn 0.2s forwards;
+}
+
+@keyframes popIn {
+  to { transform: scale(1); }
+}
+
+/* ===== Boutons ===== 
+   Utilité : Gère l'interactivité globale des boutons (survol, états désactivés, accessibilité). */
+button {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  padding: 0.7rem 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-fonce);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.secondaire {
+  color: var(--encre);
+  background: transparent;
+  border: 1px solid var(--trait);
+}
+
+button.secondaire:hover:not(:disabled) {
+  background: var(--fond);
+}
+
+/* ===== Compteurs d'argent ===== 
+   Utilité : Aligne et met en valeur les montants financiers générés. */
+.argent {
+  display: grid;
+  gap: 0.15rem;
+  text-align: right;
+}
+
+#compteur {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#revenu,
+#total {
+  color: var(--encre-douce);
+  font-size: 0.95em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Couronnes ===== 
+   Utilité : Gère l'affichage et l'animation d'apparition des icônes de succès. */
+.couronnes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.couronne {
+  display: inline-flex;
+  color: var(--trait);
+}
+
+.couronne svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: currentColor;
+}
+
+.couronne.debloque {
+  color: var(--couleur);
+  animation: apparition 0.5s ease-out;
+}
+
+@keyframes apparition {
+  0%   { transform: scale(0.5) rotate(-12deg); opacity: 0; }
+  70%  { transform: scale(1.2) rotate(4deg);   opacity: 1; }
+  100% { transform: scale(1) rotate(0); }
+}
+
+/* ===== Boutique ===== 
+   Utilité : Organise la grille des améliorations achetables. */
+.article {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--trait);
+}
+
+.article-info {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.article-info span {
+  color: var(--encre-douce);
+  font-size: 0.95em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Succès ===== 
+   Utilité : Structure la liste des défis et leur état de déblocage. */
+.bloc-succes {
+  display: grid;
+  gap: 1rem;
+}
+
+#message-succes {
+  min-height: 1.4em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#liste-succes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0;
+}
+
+.succes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--trait);
+}
+
+.succes-texte {
+  flex: 1;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.succes-texte span {
+  color: var(--encre-douce);
+  font-size: 0.95em;
+}
+
+.succes .etat {
+  color: var(--encre-douce);
+  font-size: 0.9em;
+}
+
+.succes.debloque .etat {
+  color: var(--encre);
+  font-weight: 700;
+}
+
+.succes:not(.debloque) .succes-texte {
+  opacity: 0.6;
+}
+
+/* ===== Classement ===== 
+   Utilité : Met en forme le formulaire de score et la liste des meilleurs joueurs. */
+.bloc-classement {
+  display: grid;
+  gap: 1rem;
+}
+
+.formulaire-score {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.formulaire-score input {
+  flex: 1 1 10rem;
+  min-width: 0;
+  font: inherit;
+  color: var(--encre);
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+}
+
+.formulaire-score input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#message {
+  min-height: 1.4em;
+  color: var(--encre-douce);
+  font-size: 0.95em;
+}
+
+#liste-classement {
+  margin: 0;
+  padding-left: 1.75rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+#liste-classement li {
+  padding-left: 0.25rem;
+}
+
+#liste-classement li:not(.vide) {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#liste-classement li:first-child:not(.vide) {
+  font-weight: 700;
+}
+
+#liste-classement .score {
+  font-variant-numeric: tabular-nums;
+  color: var(--encre-douce);
+}
+
+#liste-classement li:first-child .score {
+  color: var(--encre);
+}
+
+#liste-classement .vide {
+  list-style: none;
+  margin-left: -1.75rem;
+  color: var(--encre-douce);
+}
+
+.bloc-classement .secondaire {
+  justify-self: start;
+}
+
+.invisible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ===== Horloge ===== 
+   Utilité : Affiche l'heure courante avec une police lisible. */
+.bloc-heure {
+  display: grid;
+  gap: 0.25rem;
+}
+
+#heure {
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--encre);
+}
+
+/* ===== Responsive (Mobile) ===== 
+   Utilité : Adapte la disposition des blocs pour les petits écrans. */
+@media (max-width: 480px) {
+  .bloc-clics,
+  .bloc-bonus,
+  .article,
+  .formulaire-pari,
+  .boutons-pari {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .formulaire-pari input {
+    width: 100%;
+  }
+
+  .argent {
+    text-align: center;
+  }
+
+  .bloc-classement .secondaire {
+    justify-self: stretch;
+  }
+}
+
+/* ===== Accessibilité & Animations réduites ===== 
+   Utilité : Désactive les animations pour les utilisateurs souffrant de troubles vestibulaires. */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .piece {
+    transition: none;
+  }
+
+  .couronne.debloque,
+  .piece.animation-rotation {
+    animation: none;
+  }
+}

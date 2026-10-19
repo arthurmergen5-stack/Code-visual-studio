@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page de Test avec onglets, couronnes et profil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Structure de l'interface -->
+  <main class="page">
+    
+    <!-- Bouton de profil cliquable en haut à droite -->
+    <button id="btn-profil" class="btn-profil" data-cible="page-profil">Mon Profil</button>
+
+    <!-- Titre principal, description + affichage des couronnes de tous les jeux -->
+    <header class="entete">
+      <h1>Money maker</h1> 
+      <p>Cliquez, achetez des améliorations, jouez à l'Aim Lab et tentez votre chance au casino !</p>
+      
+      <!-- Espace ou les couronnes sont affichés couronnes des trois jeux pour le suivi des bonus -->
+      <div class="zone-couronnes-globales">
+        <div>
+          <span class="titre-couronnes">Couronnes Clicker :</span>
+          <div id="couronnes" class="couronnes" aria-label="Couronnes Clicker"></div>
+        </div>
+        <div>
+          <span class="titre-couronnes">Couronnes Aim Lab :</span>
+          <div id="couronnes-aim" class="couronnes" aria-label="Couronnes Aim Lab"></div>
+        </div>
+        <div>
+          <span class="titre-couronnes">Couronnes Casino :</span>
+          <div id="couronnes-casino" class="couronnes" aria-label="Couronnes Casino"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Barre d'onglets pour basculer entre les différentes jeux d'ou le nav -->
+    <nav class="onglets" aria-label="Navigation des jeux">
+      <button class="bouton-onglet actif" data-cible="page-clicker">Jeu Clicker</button>
+      <button class="bouton-onglet" data-cible="page-aim">Jeu Aim Lab</button>
+      <button class="bouton-onglet" data-cible="page-casino">Casino</button>
+      <button class="bouton-onglet" data-cible="page-profil">Profil</button>
+    </nav>
+
+    <!-- Fenêtre récapitulative du pourcentage de bonus global -->
+    <section class="bloc bloc-bonus">
+      <div class="bonus-titre">Bonus total des couronnes</div>
+      <div id="bonus-pourcentage" class="bonus-valeur">+0% de gain supplémentaire</div>
+    </section>
+
+    <!-- PAGE 1 : Contient l'action principale de clic et la boutique -->
+    <div id="page-clicker" class="conteneur-page actif">
+      <section class="bloc">
+        <h2>Jeu 1 : Clicker</h2>
+        <div class="bloc-clics">
+          <button id="bouton">Cliquer ici (+1 €)</button>
+          <div class="argent">
+            <div id="compteur">Argent : 0 €</div>
+            <div id="revenu">Revenu : 0 € par seconde</div>
+            <div id="total">Total généré : 0 €</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloc bloc-boutique">
+        <h2>Boutique (Jeu 1)</h2>
+
+        <div class="article">
+          <div class="article-info">
+            <strong>Force du clic</strong>
+            <span id="niveau-clic">Gain actuel : 1 € par clic</span>
+          </div>
+          <button id="acheter-clic" disabled>+1 € par clic (50 €)</button>
+        </div>
+
+        <div class="article">
+          <div class="article-info">
+            <strong>Revenu automatique</strong>
+            <span id="niveau-auto">Gain actuel : 0 € par seconde</span>
+          </div>
+          <button id="acheter-auto" disabled>+1 € par seconde (100 €)</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- PAGE 2 : Mini-jeu de aim lab -->
+    <div id="page-aim" class="conteneur-page">
+      <section class="bloc bloc-aim">
+        <h2>Jeu 2 : Aim Lab (Cliquez sur les cibles !)</h2>
+        <div class="aim-infos">
+          <span id="aim-score">Score : 0 cibles touchées</span>
+          <span id="aim-record">Meilleur score : 0</span>
+        </div>
+        <div id="aim-plateau" class="aim-plateau">
+          <button id="aim-start">Lancer l'Aim Lab</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- PAGE 3 : pour parier l'argent gagné vive le gambling -->
+    <div id="page-casino" class="conteneur-page">
+      <section class="bloc bloc-casino">
+        <h2>Casino : Le Coin des Paris</h2>
+        <p class="casino-desc">Pariez votre argent virtuel pour tenter de doubler vos sous !</p>
+        
+        <div class="formulaire-pari">
+          <label for="montant-pari">Montant du pari (€) :</label>
+          <input id="montant-pari" type="number" min="1" value="10" />
+        </div>
+
+        <div class="zone-piece">
+          <div id="piece" class="piece">?</div>
+        </div>
+
+        <div class="boutons-pari">
+          <button id="parier-pile">Parier sur Pile (x2)</button>
+          <button id="parier-face">Parier sur Face (x2)</button>
+        </div>
+
+        <div id="resultat-casino" role="status" class="resultat-casino">Faites vos jeux !</div>
+      </section>
+    </div>
+
+    <!-- PAGE PROFIL : Affiche toutes les statistiques globales du joueur -->
+    <div id="page-profil" class="conteneur-page">
+      <section class="bloc bloc-profil">
+        <h2>Mon Profil & Statistiques</h2>
+        <div class="stat-ligne"><strong>Pseudo :</strong> <span id="stat-pseudo">Anonyme</span></div>
+        <div class="stat-ligne"><strong>Clics totaux :</strong> <span id="stat-clics">0</span></div>
+        <div class="stat-ligne"><strong>Argent total généré :</strong> <span id="stat-total-genere">0 €</span></div>
+        <div class="stat-ligne"><strong>Nombre de paris :</strong> <span id="stat-paris">0</span></div>
+        <div class="stat-ligne"><strong>Essais à l'Aim Lab :</strong> <span id="stat-essais-aim">0</span></div>
+        <div class="stat-ligne"><strong>Couronnes obtenues :</strong> <span id="stat-couronnes">0 / 9</span></div>
+      </section>
+    </div>
+
+    <!-- Liste des succes et comment les obtenirs -->
+    <section class="bloc bloc-succes">
+      <h2>Succès (+10% de bonus par couronne)</h2>
+      <div id="message-succes" role="status"></div>
+      <ul id="liste-succes"></ul>
+    </section>
+
+    <!-- CLASSEMENT : Formulaire et tableau pour enregistrer et afficher les meilleurs scores locaux -->
+    <section class="bloc bloc-classement">
+      <h2>Classement Général</h2>
+
+      <div class="formulaire-score">
+        <label for="pseudo" class="invisible">Votre pseudo</label>
+        <input id="pseudo" type="text" maxlength="20" placeholder="Votre pseudo" autocomplete="off" />
+        <button id="enregistrer">Enregistrer mon score</button>
+      </div>
+      <div id="message" role="status"></div>
+
+      <ol id="liste-classement"></ol>
+
+      <button id="vider" class="secondaire">Effacer le classement</button>
+    </section>
+
+    <!-- HORLOGE : Bloc affichant l'heure en temps réel -->
+    <section class="bloc bloc-heure">
+      <div id="heure">Heure actuelle : --:--:--</div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
